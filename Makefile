@@ -1,5 +1,13 @@
 .PHONY: all
-all: dotfiles
+all: bin dotfiles
+
+.PHONY: bin
+bin: ## Installs the bin directory files.
+	# add aliases for things in bin
+	for file in $(shell find $(CURDIR)/bin -type f -not -name "*-backlight" -not -name ".*.swp"); do \
+		f=$$(basename $$file); \
+		sudo ln -sf $$file /usr/local/bin/$$f; \
+	done
 
 .PHONY: dotfiles
 dotfiles: ## Installs the dotfiles.
@@ -7,7 +15,6 @@ dotfiles: ## Installs the dotfiles.
 	for file in $(shell find $(CURDIR) -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg"); do \
 		\cp $$file $(HOME)/$$f; \
 	done; \
-	source ~/.zshrc
 
 .PHONY: help
 help:
