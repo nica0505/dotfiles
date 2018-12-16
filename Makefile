@@ -1,12 +1,12 @@
 .PHONY: all
-all: bin dotfiles
+all: brew dotfiles
 
-.PHONY: bin
-bin: ## Copy bin files to /usr/local/bin/
-	for file in $(shell find $(CURDIR)/bin -type f); do \
-		f=$$(basename $$file); \
-		sudo \cp $$file /usr/local/bin/$$f; \
-	done
+.PHONY: brew
+brew: ## Install programs with brew
+	brew update
+	brew install jq
+	brew install kubectl
+	brew install nodejs
 
 .PHONY: dotfiles
 dotfiles: ## Copy dotfiles to HOME folder

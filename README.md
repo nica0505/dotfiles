@@ -10,7 +10,4 @@ make
 
 ```bash
 make help
-
-bin                            Copy bin files to /usr/local/bin/
-dotfiles                       Copy dotfiles to HOME folder
 ```
