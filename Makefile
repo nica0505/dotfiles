@@ -2,17 +2,15 @@
 all: bin dotfiles
 
 .PHONY: bin
-bin: ## Installs the bin directory files.
-	# add aliases for things in bin
-	for file in $(shell find $(CURDIR)/bin -type f -not -name "*-backlight" -not -name ".*.swp"); do \
+bin: ## Copy bin files to /usr/local/bin/
+	for file in $(shell find $(CURDIR)/bin -type f); do \
 		f=$$(basename $$file); \
-		sudo ln -sf $$file /usr/local/bin/$$f; \
+		sudo \cp $$file /usr/local/bin/$$f; \
 	done
 
 .PHONY: dotfiles
-dotfiles: ## Installs the dotfiles.
-	# copy and overwrite files
-	for file in $(shell find $(CURDIR) -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg"); do \
+dotfiles: ## Copy dotfiles to HOME folder
+	for file in $(shell find $(CURDIR) -name ".*" -not -name ".git"); do \
 		\cp $$file $(HOME)/$$f; \
 	done; \
 

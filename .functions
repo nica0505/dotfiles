@@ -28,5 +28,32 @@ gh() {
 # create a new directory and enter it
 mkd() {
 	mkdir -p "$@"
-	cd "$@" || exit
+	cd "$@"
+}
+
+# clean docker shit
+dclean() {
+	docker rm -v $(docker ps -a -q -f status=exited) 2> /dev/null
+	docker volume rm $(docker volume ls -qf dangling=true) 2> /dev/null
+	docker rmi $(docker images -f "dangling=true" -q) 2> /dev/null
+	docker volume rm $(docker volume ls -qf dangling=true) 2> /dev/null
+}
+
+# install k8s dashboard
+k8sdash() {
+	kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+	kubectl proxy > /dev/null &
+}
+
+# force delete k8s pod
+k8sforcedel() {
+	kubectl delete pod $@ --grace-period=0 --force
+}
+
+# git add git commit git push to current branch
+push() {
+	b=$(git branch | grep \* | cut -d ' ' -f2)
+	git add --all
+	git commit -m "$@"
+	git push origin $b
 }

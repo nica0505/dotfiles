@@ -1,7 +1,0 @@
-#!/bin/bash
-
-dclean() {
-	docker volume rm $(docker volume ls -qf dangling=true) 2> /dev/null
-	docker rmi $(docker images -f "dangling=true" -q) 2> /dev/null
-	docker volume rm $(docker volume ls -qf dangling=true) 2> /dev/null
-}
