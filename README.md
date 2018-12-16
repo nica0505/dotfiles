@@ -1,3 +1,5 @@
-# dotfiles
+## Install
 
-My configuration for: vim, git, etc.
+```bash
+make
+```
