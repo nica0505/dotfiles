@@ -13,6 +13,7 @@ dotfiles: ## Copy dotfiles to HOME folder
 	for file in $(shell find $(CURDIR) -name ".*" -not -name ".git"); do \
 		\cp $$file $(HOME)/$$f; \
 	done; \
+	\cp settings.json ~/Library/Application\ Support/Code/User/settings.json
 
 .PHONY: help
 help:
