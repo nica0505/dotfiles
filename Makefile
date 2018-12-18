@@ -1,5 +1,5 @@
 .PHONY: all
-all: brew dotfiles
+all: brew dotfiles zsh
 
 .PHONY: brew
 brew: ## Install programs with brew
@@ -14,6 +14,11 @@ dotfiles: ## Copy dotfiles to HOME folder
 		\cp $$file $(HOME)/$$f; \
 	done; \
 	\cp settings.json ~/Library/Application\ Support/Code/User/settings.json
+
+.PHONY: zsh
+zsh: ## Install zsh plugins
+	git clone git@github.com:jdxcode/gh.git ~/gh
+	mv ~/gh/zsh/gh ~/.oh-my-zsh/custom/plugins/
 
 .PHONY: help
 help:

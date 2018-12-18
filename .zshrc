@@ -1,11 +1,12 @@
-export ZSH="/Users/alex/.oh-my-zsh"
-export GOPATH="/Users/alex/go"
+export ZSH="$HOME/.oh-my-zsh"
+export GOPATH="$HOME/go"
 export PATH=$PATH:/usr/local/bin/:$HOME/go/bin
+export GH_BASE_DIR="$HOME/go/src"
 
 ZSH_THEME="avit"
 
 plugins=(
-  git
+  git gh
 )
 
 source $ZSH/oh-my-zsh.sh
