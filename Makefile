@@ -7,7 +7,6 @@ brew: ## Install programs with brew
 	brew install jq
 	brew install kubectl
 	brew install nodejs
-	brew install flux
 
 .PHONY: dotfiles
 dotfiles: ## Copy dotfiles to HOME folder
