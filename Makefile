@@ -2,23 +2,27 @@
 all: brew dotfiles zsh
 
 .PHONY: brew
+PROGRAMS = jq kubectl nodejs bat
 brew: ## Install programs with brew
 	brew update
-	brew install jq
-	brew install kubectl
-	brew install nodejs
+	$(foreach program,$(PROGRAMS),brew install $(program) || brew upgrade $(program);)
 
 .PHONY: dotfiles
 dotfiles: ## Copy dotfiles to HOME folder
-	for file in $(shell find $(CURDIR) -name ".*" -not -name ".git"); do \
+	for file in $(shell find $(CURDIR) -name ".*" -not -name ".git" -not -name ".DS_Store" -not -name ".swp"); do \
 		\cp $$file $(HOME)/$$f; \
 	done; \
-	\cp settings.json ~/Library/Application\ Support/Code/User/settings.json
+	\cp settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
 
 .PHONY: zsh
 zsh: ## Install zsh plugins
-	git clone git@github.com:jdxcode/gh.git ~/gh
-	mv ~/gh/zsh/gh ~/.oh-my-zsh/custom/plugins/
+	if [ ! -d "$(HOME)/gh" ]; then \
+		git clone git@github.com:jdxcode/gh.git $(HOME)/gh; \
+	fi
+
+	if [ ! -d "$(HOME)/.oh-my-zsh/custom/plugins/gh" ]; then \
+		mv -n $(HOME)/gh/zsh/gh $(HOME)/.oh-my-zsh/custom/plugins/; \
+	fi
 
 .PHONY: help
 help:
