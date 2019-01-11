@@ -6,6 +6,7 @@ PROGRAMS = jq kubectl nodejs bat
 brew: ## Install programs with brew
 	brew update
 	$(foreach program,$(PROGRAMS),brew install $(program) || brew upgrade $(program);)
+	curl -sfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $GOPATH/bin latest
 
 .PHONY: dotfiles
 dotfiles: ## Copy dotfiles to HOME folder
