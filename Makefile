@@ -6,7 +6,16 @@ PROGRAMS = jq kubectl nodejs bat
 brew: ## Install programs with brew
 	brew update
 	$(foreach program,$(PROGRAMS),brew install $(program) || brew upgrade $(program);)
-	curl -sfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $GOPATH/bin latest
+
+	# gosec
+	curl -sfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $(GOPATH)/bin latest
+
+	# gcloud
+	if [ ! -d "$(HOME)/google-cloud-sdk" ]; then \
+		mkdir $(HOME)/google-cloud-sdk; \
+		curl -s https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-229.0.0-darwin-x86_64.tar.gz | tar xvz - -C $(HOME)/; \
+		gcloud init; \
+	fi
 
 .PHONY: dotfiles
 dotfiles: ## Copy dotfiles to HOME folder
@@ -14,6 +23,7 @@ dotfiles: ## Copy dotfiles to HOME folder
 		\cp $$file $(HOME)/$$f; \
 	done; \
 	\cp settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
+	\cp com.googlecode.iterm2.plist $(HOME)/Library/Preferences/com.googlecode.iterm2.plist
 
 .PHONY: zsh
 zsh: ## Install zsh plugins
