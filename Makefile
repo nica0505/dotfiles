@@ -17,6 +17,14 @@ brew: ## Install programs with brew
 		gcloud init; \
 	fi
 
+	# o
+	if [ ! -d "/usr/local/bin/o" ]; then \
+		rm -rf ~/o.tmp; \
+		git clone git@github.com:plutov/o.git ~/o.tmp; \
+		~/o.tmp/install.sh; \
+		rm -rf ~/o.tmp; \
+	fi
+
 .PHONY: dotfiles
 dotfiles: ## Copy dotfiles to HOME folder
 	for file in $(shell find $(CURDIR) -name ".*" -not -name ".git" -not -name ".DS_Store" -not -name ".swp"); do \
