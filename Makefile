@@ -2,7 +2,7 @@
 all: brew dotfiles zsh
 
 .PHONY: brew
-PROGRAMS = jq kubectl nodejs bat
+PROGRAMS = jq kubectl nodejs bat telnet
 brew: ## Install programs with brew
 	brew update
 	$(foreach program,$(PROGRAMS),brew install $(program) || brew upgrade $(program);)
