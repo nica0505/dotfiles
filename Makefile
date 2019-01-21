@@ -1,5 +1,5 @@
 .PHONY: all
-all: brew dotfiles zsh
+all: zsh dotfiles brew
 
 .PHONY: brew
 PROGRAMS = jq kubectl nodejs bat telnet hugo
@@ -16,6 +16,7 @@ brew: ## Install programs with brew
 		curl -s https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-229.0.0-darwin-x86_64.tar.gz | tar xvz - -C $(HOME)/; \
 		gcloud init; \
 	fi
+	gcloud components update
 
 	# o
 	if [ ! -d "/usr/local/bin/o" ]; then \
