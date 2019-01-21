@@ -45,6 +45,12 @@ k8sforcedel() {
 	kubectl delete pod $@ --grace-period=0 --force
 }
 
+# clean local branches
+dellocalbranches() {
+	git fetch --prune
+	git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d
+}
+
 # git add git commit git push to current branch
 push() {
 	b=$(git branch | grep \* | cut -d ' ' -f2)
