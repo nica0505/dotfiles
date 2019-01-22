@@ -3,12 +3,21 @@ all: zsh dotfiles brew
 
 .PHONY: brew
 PROGRAMS = jq kubectl nodejs bat telnet hugo
+CASC_PROGRAMS = flux iterm2 firefox google-chrome visual-studio-code
 brew: ## Install programs with brew
-	brew update
-	$(foreach program,$(PROGRAMS),brew install $(program) || brew upgrade $(program);)
+	if [ ! -f "/usr/local/bin/brew" ]; then \
+    	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby; \
+	fi
 
-	# gosec
-	curl -sfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $(GOPATH)/bin latest
+	brew update
+
+	$(foreach program,$(PROGRAMS),brew install $(program) || brew upgrade $(program);)
+	$(foreach program,$(CASC_PROGRAMS),brew casc install $(program) || echo "$(program) already installed";)
+
+	# go
+	if [ ! -f "/usr/local/bin/go" ]; then \
+		brew install go; \
+	fi
 
 	# gcloud
 	if [ ! -d "$(HOME)/google-cloud-sdk" ]; then \
@@ -16,10 +25,11 @@ brew: ## Install programs with brew
 		curl -s https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-229.0.0-darwin-x86_64.tar.gz | tar xvz - -C $(HOME)/; \
 		gcloud init; \
 	fi
+
 	gcloud components update
 
 	# o
-	if [ ! -d "/usr/local/bin/o" ]; then \
+	if [ ! -f "/usr/local/bin/o" ]; then \
 		rm -rf ~/o.tmp; \
 		git clone git@github.com:plutov/o.git ~/o.tmp; \
 		~/o.tmp/install.sh; \
