@@ -2,7 +2,7 @@
 all: zsh dotfiles brew
 
 .PHONY: brew
-PROGRAMS = jq kubectl nodejs bat telnet hugo kubernetes-helm
+PROGRAMS = jq kubectl nodejs bat telnet hugo kubernetes-helm httpie
 CASC_PROGRAMS = flux iterm2 firefox google-chrome visual-studio-code
 brew: ## Install programs with brew
 	if [ ! -f "/usr/local/bin/brew" ]; then \
