@@ -12,7 +12,7 @@ brew: ## Install programs with brew
 	brew update
 
 	$(foreach program,$(PROGRAMS),brew install $(program) || brew upgrade $(program);)
-	$(foreach program,$(CASC_PROGRAMS),brew casc install $(program) || echo "$(program) already installed";)
+	$(foreach program,$(CASC_PROGRAMS),brew cask install $(program) || echo "$(program) already installed";)
 
 	# go
 	if [ ! -f "/usr/local/bin/go" ]; then \
