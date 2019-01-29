@@ -1,5 +1,5 @@
 .PHONY: all
-all: zsh dotfiles brew
+all: zsh dotfiles brew vim
 
 .PHONY: brew
 PROGRAMS = jq kubectl nodejs bat telnet hugo kubernetes-helm httpie watch
@@ -57,3 +57,8 @@ zsh: ## Install zsh plugins
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+.PHONY: vim
+vim: ## Set up vim
+	\cp -R .vim/ $(HOME)/; \
+	\cp .vimrc $(HOME)/.vimrc; \

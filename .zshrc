@@ -4,7 +4,7 @@ export PATH=$PATH:/usr/local/bin/:$HOME/go/bin
 export GH_BASE_DIR="$HOME/go/src"
 export LANG=C
 
-ZSH_THEME="avit"
+ZSH_THEME="af-magic"
 
 plugins=(
   git gh
