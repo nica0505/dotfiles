@@ -60,5 +60,5 @@ help:
 
 .PHONY: vim
 vim: ## Set up vim
-	\cp -R .vim/ $(HOME)/; \
+	\cp -R .vim $(HOME)/; \
 	\cp .vimrc $(HOME)/.vimrc; \
