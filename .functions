@@ -61,6 +61,12 @@ push() {
 	git push origin $b
 }
 
+dev() {
+	git fetch
+	git checkout develop
+	git pull origin develop
+}
+
 gomod() {
 	GO111MODULE=on go mod $@
 }
