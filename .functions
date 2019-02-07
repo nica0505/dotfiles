@@ -70,3 +70,7 @@ dev() {
 gomod() {
 	GO111MODULE=on go mod $@
 }
+
+flushdns() {
+	sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache
+}
