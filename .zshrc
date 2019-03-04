@@ -3,7 +3,7 @@ export GOPATH="$HOME/go"
 export PATH=$PATH:/usr/local/bin/:$HOME/go/bin:$HOME/flutter/bin
 export GH_BASE_DIR="$HOME/go/src"
 export LANG=C
-export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
+export ANDROID_SDK_ROOT="/Users/alex/Library/Android/sdk"
 
 ZSH_THEME="af-magic"
 
