@@ -52,6 +52,11 @@ k8sforcedel() {
 	kubectl delete pod $@ --grace-period=0 --force
 }
 
+# delete evicted pods
+k8sdelevicted() {
+    kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
+}
+
 # clean local branches
 dellocalbranches() {
 	git fetch --prune
