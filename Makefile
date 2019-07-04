@@ -3,7 +3,7 @@ all: zsh dotfiles brew vim
 
 .PHONY: brew
 
-BREW_PROGRAMS = jq kubectl nodejs bat telnet hugo kubernetes-helm httpie watch gotop
+BREW_PROGRAMS = jq kubectl nodejs bat telnet hugo kubernetes-helm httpie watch gotop lazydocker
 CASC_PROGRAMS = flux iterm2 firefox google-chrome visual-studio-code
 brew: ## Install programs with brew
 	if [ ! -f "/usr/local/bin/brew" ]; then \
@@ -12,6 +12,7 @@ brew: ## Install programs with brew
 
 	brew update
 	brew tap cjbassi/gotop
+	brew tap jesseduffield/lazydocker
 
 	$(foreach program,$(BREW_PROGRAMS),brew install $(program) || brew upgrade $(program);)
 	$(foreach program,$(CASC_PROGRAMS),brew cask install $(program) || echo "$(program) already installed";)
