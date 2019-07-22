@@ -65,6 +65,7 @@ set complete=.,w,b,u,t
 set completeopt=longest,menuone
 set mouse=nicr
 set laststatus=2
+set foldlevelstart=99
 
 " Colors
 set background=dark
