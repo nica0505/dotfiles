@@ -77,6 +77,12 @@ dev() {
 	git pull origin develop
 }
 
+master() {
+	git fetch
+	git checkout master
+	git pull origin master
+}
+
 gomod() {
 	GO111MODULE=on go mod $@
 }
