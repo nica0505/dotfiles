@@ -83,6 +83,10 @@ master() {
 	git pull origin master
 }
 
+tags() {
+    git push origin master --tags
+}
+
 gomod() {
 	GO111MODULE=on go mod $@
 }
