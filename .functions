@@ -101,5 +101,5 @@ home() {
 }
 
 work() {
-    gcloud config configurations activate twelvetraitsi
+    gcloud config configurations activate twelvetraits
 }
