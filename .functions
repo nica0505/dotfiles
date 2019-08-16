@@ -94,3 +94,12 @@ gomod() {
 flushdns() {
 	sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache
 }
+
+# switch gcloud config to personal config
+home() {
+    gcloud config configurations activate packagemain
+}
+
+work() {
+    gcloud config configurations activate twelvetraitsi
+}
