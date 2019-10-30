@@ -63,5 +63,6 @@ help:
 
 .PHONY: vim
 vim: ## Set up vim
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	\cp -R .vim $(HOME)/; \
 	\cp .vimrc $(HOME)/.vimrc; \

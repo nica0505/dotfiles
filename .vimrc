@@ -108,3 +108,4 @@ let g:go_highlight_fields = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_fmt_autosave = 1
+let g:go_version_warning = 0
