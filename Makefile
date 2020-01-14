@@ -1,5 +1,5 @@
 .PHONY: all
-all: zsh dotfiles brew vim
+all: zsh dotfiles brew vim iterm2
 
 .PHONY: brew
 
@@ -45,7 +45,6 @@ dotfiles: ## Copy dotfiles to HOME folder
 		\cp $$file $(HOME)/$$f; \
 	done; \
 	\cp settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
-	\cp com.googlecode.iterm2.plist $(HOME)/Library/Preferences/com.googlecode.iterm2.plist
 
 .PHONY: zsh
 zsh: ## Install zsh plugins
@@ -66,3 +65,8 @@ vim: ## Set up vim
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	\cp -R .vim $(HOME)/; \
 	\cp .vimrc $(HOME)/.vimrc; \
+
+.PHONY: iterm2
+iterm2: ## Set up iterm2
+	defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$(CURDIR)/iterm2"; \
+	defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true; \
