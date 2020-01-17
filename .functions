@@ -103,3 +103,11 @@ home() {
 work() {
     gcloud config configurations activate twelvetraits
 }
+
+dcup() {
+	docker-compose up -d --build
+}
+
+dclog() {
+	docker-compose logs -f
+}
