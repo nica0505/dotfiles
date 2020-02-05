@@ -87,6 +87,11 @@ tags() {
     git push origin master --tags
 }
 
+# get latest git tag
+latest() {
+	git describe --tags `git rev-list --tags --max-count=1`
+}
+
 gomod() {
 	GO111MODULE=on go mod $@
 }
