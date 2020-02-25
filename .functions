@@ -83,6 +83,25 @@ master() {
 	git pull origin master
 }
 
+masterfromdevelop() {
+	git checkout master
+	git branch -m old-master
+	git checkout develop
+	git branch -m master
+
+	# Force push develop (now master) into remote master
+	git push origin master -f
+
+	# Change branch names back to original
+	git branch -m develop
+	git checkout old-master
+	git branch -m master
+
+	# Sync local master with remote master
+	git fetch --all
+	git reset --hard origin/master
+}
+
 tags() {
     git push origin master --tags
 }
