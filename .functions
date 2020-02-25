@@ -84,9 +84,12 @@ master() {
 }
 
 masterfromdevelop() {
+	git fetch
 	git checkout master
+	git pull origin master
 	git branch -m old-master
 	git checkout develop
+	git pull origin develop
 	git branch -m master
 
 	# Force push develop (now master) into remote master
